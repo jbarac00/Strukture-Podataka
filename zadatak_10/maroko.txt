@@ -1,0 +1,4 @@
+marrakesh 930000
+fes 1200000
+casablanca 3400000
+rabat 580000
