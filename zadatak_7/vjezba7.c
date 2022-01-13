@@ -3,8 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX 250
+
 typedef struct _direktorij {
-	char ime[20];
+	char ime[MAX];
 	struct _direktorij* child;
 	struct _direktorij* sibling;
 }Direktorij;
@@ -46,7 +48,7 @@ int main(void)
 }
 int Menu(Direktorij* Root, Cvor* Head) {
 	Direktorij* CurrentFile = Root;
-	char command[20] = { 0 };
+	char command[MAX] = { 0 };
 
 	printf(" Stvori direktorij: md <filename>\n");
 	printf(" Promijeni direktorij: cd <filename> \n");
@@ -114,6 +116,10 @@ Cvor* PronadiPosljednji(Cvor* Head) {
 }
 int Md(Direktorij* currentFile) {
 	Direktorij* directory = (Direktorij*)malloc(sizeof(Direktorij));
+	if (!directory) {
+		printf("Greska!\n");
+		return NULL;
+	}
 
 	if (currentFile->child != NULL) {
 		currentFile = currentFile->child;
@@ -134,7 +140,7 @@ int Md(Direktorij* currentFile) {
 }
 Direktorij* Cd(Direktorij* currentFile, Cvor* Head) {
 	Direktorij* SearchedFile;
-	char imeDir[20];
+	char imeDir[MAX];
 
 	scanf(" %s", imeDir);
 
@@ -177,6 +183,10 @@ Direktorij* Pronadi(char* name, Direktorij* currentFile) {
 }
 int Push(Cvor* Head, Direktorij* directory) {
 	Cvor* q = (Cvor*)malloc(sizeof(Cvor));
+	if (!q) {
+		printf("Greska!\n");
+		return -1;
+	}
 
 	q->next = Head->next;
 	q->prev = Head;
@@ -202,6 +212,11 @@ Direktorij* Back(Direktorij* currentFile, Cvor* Head) {
 }
 Direktorij* Pop(Cvor* Head) {
 	Cvor* q = (Cvor*)malloc(sizeof(Cvor));
+	if (!q) {
+		printf("Greska!\n");
+		return -1;
+	}
+
 	Direktorij* p;
 
 	if (Head->next == NULL)
