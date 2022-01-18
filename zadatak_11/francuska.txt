@@ -1,0 +1,4 @@
+pariz 2200000
+nice 340000
+lille 230000
+toulouse 440000

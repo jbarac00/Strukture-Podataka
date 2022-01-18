@@ -1,0 +1,4 @@
+zagreb 800000
+split 180000
+dubrovnik 40000
+sinj 25000
